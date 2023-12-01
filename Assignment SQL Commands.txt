@@ -1,0 +1,125 @@
+-- 1.Identify the primary keys and foreign keys in maven movies db. Discuss the differences ;
+
+USE mavenmovies;
+select * from city;
+select * from rental;
+/* 
+columns of city = city_id,city,country_id,Last_update
+columns of rental = rental_id,rental_date,inventory_id,customer_id,return_date,staff_id,last_update
+Primary Key 
+1.A primary key is a unique identifier for each record in a table.
+2.A Primary Key Does not allow NULL values in the field.
+3.Only one primary key can exist per table
+4.City_id is a Primary key in City Table
+5.rental_id is a Primary key in Rental Table
+
+foreign Key 
+1.A foreign key establishes a relationship between tables by referencing the primary key of another table
+2.A foreign Key Allows NULL values in the field
+3.Multiple foreign keys can exist within a table
+4.Country_id is a foreign Key in the City Table
+5.inventory_id ,customer_id,staff_id is Foreign Key in Rental Table
+*/
+
+-- 2.List all details of actors;
+
+-- TO  check the column
+desc actor;
+
+-- to check the data 
+select * from actor;
+
+/*
+field        Type              Null  Key    Default Extra   
+actor_id	smallint unsigned	NO	PRI		auto_increment 
+first_name	varchar(45)	NO			
+last_name	varchar(45)	NO	MUL		
+last_update	timestamp	NO		CURRENT_TIMESTAMP	DEFAULT_GENERATED on update CURRENT_TIMESTAMP
+ */
+
+-- 3.List all customer information from DB. 
+
+Select * from customer;
+ 
+
+-- 4.List different countries.
+select  country from country;
+
+ -- 5.Display all active customers. 
+
+ select First_name  as customername  from customer
+ where active = 1;
+
+ -- 6.List of all rental IDs for customer with ID 1. 
+select rental_id ,customer_id from rental
+where customer_id = 1;
+
+-- 7.Display all the films whose rental duration is greater than 5 .
+select title from film
+where rental_duration > 5;
+
+ -- 8.List the total number of films whose replacement cost is greater than $15 and less than $20.
+ select count(film_id) films from film
+ where replacement_cost >15 
+ and replacement_cost < 20;
+ 
+-- 9.Display the count of unique first names of actors.
+select first_name,count(actor_id) as cnt
+ from actor
+ group by first_name;
+ 
+
+ -- 10.Display the first 3 records from the customer table whose first name starts with ‘b’.
+ select * from customer
+ where first_name like 'b%'
+ limit 3;
+
+-- 11.Display the names of the first 5 movies which are rated as ‘G’.
+select title movies from film
+where rating = 'G'
+limit 5;
+
+-- 12.Find all customers whose first name starts with "a". 
+select first_name from customer
+where first_name like 'a%';
+
+-- 13. Find all customers whose first name ends with "a". 
+select first_name from customer
+where first_name like '%a';
+
+ -- 14.Display the list of first 4 cities which start and end with ‘a’ .
+ select * from city
+ where city like 'a%a'
+ limit 4;
+ 
+ -- 15.Find all customers whose first name have "NI" in any position. 
+select * from customer
+where first_name like '%NI%';
+
+ -- 16.Find all customers whose first name have "r" in the second position .
+ select * from customer
+where first_name like '_r%';
+ 
+-- 17. Find all customers whose first name starts with "a" and are at least 5 characters in length.
+  select * from customer
+where first_name like 'a%'
+and  LENGTH(first_name) >= 5;
+
+ -- 18.Find all customers whose first name starts with "a" and ends with "o". 
+   select * from customer
+where first_name like 'a%o';
+
+-- 19. Get the films with pg and pg-13 rating using IN operator. 
+select * from film
+where rating in ('PG','PG-13');
+
+-- 20. Get the films with length between 50 to 100 using between operator. 
+select * from film
+where length between 50 and 100;
+
+-- 21.Get the top 50 actors using limit operator.
+ select * from actor
+ limit 50;
+
+ -- 22.Get the distinct film ids from inventory table. 
+ select distinct film_id from inventory;
