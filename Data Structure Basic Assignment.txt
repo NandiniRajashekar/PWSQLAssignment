@@ -1,0 +1,114 @@
+Q1: Discuss String Slicing and Provide an Example
+String slicing in Python is a way to extract a substring from a string using a colon-separated syntax
+[start:stop:step].
+This allows you to obtain specific parts of a string efficiently.
+- start: The starting index of the slice.
+- stop: The ending index (exclusive).
+- step: The step size (optional, default is 1).
+Example:
+text = "Hello, World!"
+print(text[0:5]) # Output: Hello
+print(text[7:12]) # Output: World
+print(text[::2]) # Output: Hlo ol!
+print(text[::-1]) # Output: !dlroW ,olleH (reversed string)
+
+Q2: Explain the Key Features of List in Python
+Lists in Python are ordered, mutable, and can hold heterogeneous elements (i.e., items of different
+data types).
+They are created using square brackets [] and support various operations.
+Key Features:
+- Ordered: Elements have a defined order and can be accessed via indices.
+- Mutable: Elements can be changed after creation.
+- Heterogeneous: Can store elements of different data types (e.g., integers, strings, objects).
+- Dynamic: Size can change dynamically as elements are added or removed.
+Example:
+my_list = [1, "two", 3.0, [4, 5]]
+print(my_list) # Output: [1, 'two', 3.0, [4, 5]]
+
+Q3: Describe How to Access, Modify, and Delete Elements in a List with Examples
+Accessing Elements:
+my_list = [10, 20, 30, 40]
+print(my_list[1]) # Output: 20
+print(my_list[-1]) # Output: 40
+Modifying Elements:
+my_list[2] = 100
+print(my_list) # Output: [10, 20, 100, 40]
+Deleting Elements:
+- Using del:
+del my_list[1]
+print(my_list) # Output: [10, 100, 40]
+- Using remove:
+my_list.remove(100)
+print(my_list) # Output: [10, 40]
+- Using pop:
+my_list.pop(0)
+print(my_list) # Output: [40]
+
+Q4: Compare and Contrast Tuples and Lists with Example
+Tuples:
+- Immutable: Cannot be modified after creation.
+- Defined using parentheses ().
+Lists:
+- Mutable: Can be modified after creation.
+- Defined using square brackets [].
+Example:
+my_tuple = (1, 2, 3)
+my_list = [1, 2, 3]
+# Attempting to modify
+# my_tuple[0] = 100 # This will raise a TypeError
+my_list[0] = 100 # This works fine
+print(my_tuple) # Output: (1, 2, 3)
+print(my_list) # Output: [100, 2, 3]
+
+Q5: Describe the Key Features of Sets and Provide an Example of Their Use
+Sets in Python are unordered collections of unique elements. They are defined using curly braces {}
+or the set() function.
+Key Features:
+- Unordered: No indexing, slicing, or other sequence-like behavior.
+- Unique Elements: No duplicate elements.
+- Mutable: Can add or remove elements.
+- Efficient: Fast membership testing.
+Example:
+my_set = {1, 2, 3, 4, 5}
+my_set.add(6)
+my_set.remove(3)
+print(my_set) # Output: {1, 2, 4, 5, 6}
+
+Q6: Discuss the Use Cases of Tuples and Sets in Python Programming
+Tuples:
+- Data Integrity: When you need to ensure the data remains unchanged.
+- Heterogeneous Data: Suitable for grouping different data types.
+- Return Multiple Values: Used in functions to return multiple values.
+Sets:
+- Unique Collection: Storing unique items.
+- Membership Testing: Efficiently check for the presence of an element.
+- Mathematical Operations: Support for union, intersection, difference.
+
+Q7: Describe How to Add, Modify, and Delete Items in a Dictionary with Example
+Adding Items:
+my_dict = {"name": "Alice", "age": 25}
+my_dict["city"] = "New York"
+print(my_dict) # Output: {'name': 'Alice', 'age': 25, 'city': 'New York'}
+Modifying Items:
+my_dict["age"] = 26
+print(my_dict) # Output: {'name': 'Alice', 'age': 26, 'city': 'New York'}
+Deleting Items:
+- Using del:
+del my_dict["city"]
+print(my_dict) # Output: {'name': 'Alice', 'age': 26}
+- Using pop:
+age = my_dict.pop("age")
+print(my_dict) # Output: {'name': 'Alice'}
+print(age) # Output: 26
+
+Q8: Discuss the Importance of Dictionary Keys Being Immutable and Provide Examples
+Dictionary keys must be immutable (e.g., strings, numbers, tuples) because they are hashed to
+allow for fast access.
+Mutable types like lists or dictionaries cannot be used as keys because their content can change,
+leading to inconsistent hash values and unpredictable behavior.
+Example:
+my_dict = {("Alice", 25): "Developer", ("Bob", 30): "Designer"}
+# Valid keys as tuples are immutable
+print(my_dict[("Alice", 25)]) # Output: Developer
+# Invalid key
+# my_dict[[1, 2, 3]] = "test" # Raises TypeError: unhashable type: 'list'
